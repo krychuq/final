@@ -118,15 +118,15 @@ public class ReservationSystem extends Application {
         customerName.setCellValueFactory(new PropertyValueFactory<>("name"));
         customerName.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerSurname = new javafx.scene.control.TableColumn<>("Reason:");
+        javafx.scene.control.TableColumn<Customer,String> customerSurname = new javafx.scene.control.TableColumn<>("fdaf:");
         customerSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         customerSurname.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerTelephon = new javafx.scene.control.TableColumn<>("Reason:");
+        javafx.scene.control.TableColumn<Customer,String> customerTelephon = new javafx.scene.control.TableColumn<>("dfa:");
         customerTelephon.setCellValueFactory(new PropertyValueFactory<>("telephone"));
         customerTelephon.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerMail = new javafx.scene.control.TableColumn<>("Reason:");
+        javafx.scene.control.TableColumn<Customer,String> customerMail = new javafx.scene.control.TableColumn<>("fdasfad:");
         customerMail.setCellValueFactory(new PropertyValueFactory<>("mail"));
         customerMail.setMinWidth(100);
 
