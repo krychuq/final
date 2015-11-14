@@ -15,6 +15,7 @@ public class ReservationSystem extends Application {
     Stage window;
     SignUpCustomer signUpCustomer = new SignUpCustomer();
     DatabaseCustomer databaseCustomer = new DatabaseCustomer();
+    Customer customer;
     public static void main(String[] args) {
         launch(args);
 
@@ -44,6 +45,14 @@ public class ReservationSystem extends Application {
         GridPane.setConstraints(passwordInput,1,1);
 
         Button logIn = new Button("Log In");
+        logIn.setOnAction(event2 -> {
+              customer = databaseCustomer.checkLoginAndPassword(nameInput.getText(),passwordInput.getText());
+            if(customer!=null){
+                System.out.println("login succesed");
+            }else {
+                System.out.println("wrong user name or password");
+            }
+        });
         GridPane.setConstraints(logIn, 1, 2);
 
         Button signUp = new Button("Sign Up");
@@ -109,32 +118,32 @@ public class ReservationSystem extends Application {
         tableView= new TableView();
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        javafx.scene.control.TableColumn<Customer,String> customerID = new javafx.scene.control.TableColumn<>("name");
+        javafx.scene.control.TableColumn<Customer,String> customerID = new javafx.scene.control.TableColumn<>("customerId");
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         customerID.setMinWidth(100);
 
 
-        javafx.scene.control.TableColumn<Customer,String> customerName = new javafx.scene.control.TableColumn<>("Time of appointment:");
+        javafx.scene.control.TableColumn<Customer,String> customerName = new javafx.scene.control.TableColumn<>("name:");
         customerName.setCellValueFactory(new PropertyValueFactory<>("name"));
         customerName.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerSurname = new javafx.scene.control.TableColumn<>("fdaf:");
+        javafx.scene.control.TableColumn<Customer,String> customerSurname = new javafx.scene.control.TableColumn<>("surname:");
         customerSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         customerSurname.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerTelephon = new javafx.scene.control.TableColumn<>("dfa:");
+        javafx.scene.control.TableColumn<Customer,String> customerTelephon = new javafx.scene.control.TableColumn<>("telephone:");
         customerTelephon.setCellValueFactory(new PropertyValueFactory<>("telephone"));
         customerTelephon.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerMail = new javafx.scene.control.TableColumn<>("fdasfad:");
+        javafx.scene.control.TableColumn<Customer,String> customerMail = new javafx.scene.control.TableColumn<>("mail:");
         customerMail.setCellValueFactory(new PropertyValueFactory<>("mail"));
         customerMail.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerUserName = new javafx.scene.control.TableColumn<>("Reason:");
+        javafx.scene.control.TableColumn<Customer,String> customerUserName = new javafx.scene.control.TableColumn<>("user name:");
         customerUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
         customerUserName.setMinWidth(100);
 
-        javafx.scene.control.TableColumn<Customer,String> customerPassword = new javafx.scene.control.TableColumn<>("Reason:");
+        javafx.scene.control.TableColumn<Customer,String> customerPassword = new javafx.scene.control.TableColumn<>("password:");
         customerPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
         customerPassword.setMinWidth(100);
         tableView.getColumns().addAll(customerID, customerName, customerSurname,customerTelephon,customerMail,customerUserName,customerPassword);

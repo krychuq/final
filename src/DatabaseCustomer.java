@@ -11,6 +11,7 @@ import java.sql.*;
  */
 public class DatabaseCustomer {
     private Connection conn=null;
+    Customer customer;
 
     public DatabaseCustomer(){
         System.out.println("***********Welcome to connections**************");
@@ -89,6 +90,32 @@ public class DatabaseCustomer {
         }
         return  observableList;
 
+    }
+
+    public Customer checkLoginAndPassword(String login, String password){
+        try {
+            String sql = "SELECT * FROM customer WHERE username= ? AND password= ?";
+
+            //Statement statement=conn.createStatement();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+
+                customer =  new Customer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),
+                        resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));
+
+            } else {
+                customer = null;
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return  customer;
     }
 
     private void updateAppointmentCount(){
