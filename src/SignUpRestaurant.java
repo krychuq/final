@@ -19,7 +19,7 @@ import java.awt.*;
 /**
  * Created by lucia on 11/10/15.
  */
-public class SignUpCustomer {
+public class SignUpRestaurant {
     Stage primaryStage;
     Label wrongLabel = new Label("");
 
@@ -43,7 +43,7 @@ public class SignUpCustomer {
 
         GridPane.setConstraints(nameTextField, 1, 0, 1, 1, HPos.CENTER, VPos.BOTTOM);
 
-        Label surname = new Label("Surname:");
+        Label surname = new Label("Company name:");
         GridPane.setConstraints(surname, 0, 1);
         TextField surnameTextField = new TextField();
         GridPane.setConstraints(surnameTextField, 1, 1);
@@ -61,7 +61,7 @@ public class SignUpCustomer {
         TextField mailTextField = new TextField();
         GridPane.setConstraints(mailTextField, 1, 3);
 
-        Label user = new Label("User name:");
+        Label user = new Label("Address:");
         GridPane.setConstraints(user, 0, 4);
 
         TextField userTextField = new TextField();
