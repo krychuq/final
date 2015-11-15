@@ -43,7 +43,7 @@ public class DatabaseCustomer {
 
 
 
-    public void insertBooking(String name, String surname,int phone,String email,String user, String password) {
+    public void insertCustomer(String name, String surname, int phone, String email, String user, String password) {
         String sql = "INSERT INTO customer VALUES (NULL , ?, ?, ?,?,?,?)";
 
         try {
@@ -54,6 +54,31 @@ public class DatabaseCustomer {
             preparedStatement.setString(4, email);
             preparedStatement.setString(5, user);
             preparedStatement.setString(6, password);
+
+
+            int numberOfRows = preparedStatement.executeUpdate();
+            System.out.println("Completed insert. Number of rows affected:" + numberOfRows);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void insertRestaurant(String name, String companyName, int cvr, String address, int phone,String mail, String login, String password) {
+        String sql = "INSERT INTO restaurant VALUES (NULL , ?, ?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, companyName);
+            preparedStatement.setInt(3, cvr);
+            preparedStatement.setString(4, address);
+            preparedStatement.setInt(5, phone);
+            preparedStatement.setString(6,mail);
+            preparedStatement.setString(7, login);
+            preparedStatement.setString(8, password);
 
 
             int numberOfRows = preparedStatement.executeUpdate();

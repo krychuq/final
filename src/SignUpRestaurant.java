@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -9,12 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javax.xml.soap.Text;
-import java.awt.*;
 
 /**
  * Created by lucia on 11/10/15.
@@ -43,11 +38,11 @@ public class SignUpRestaurant {
 
         GridPane.setConstraints(nameTextField, 1, 0, 1, 1, HPos.CENTER, VPos.BOTTOM);
 
-        Label surname = new Label("Company name:");
-        GridPane.setConstraints(surname, 0, 1);
-        TextField surnameTextField = new TextField();
-        GridPane.setConstraints(surnameTextField, 1, 1);
-        GridPane.setConstraints(wrongLabel, 0, 0,1,1, HPos.CENTER, VPos.TOP);
+        Label companyNameLabel = new Label("Company name:");
+        GridPane.setConstraints(companyNameLabel, 0, 1);
+        TextField companyTextField = new TextField();
+        GridPane.setConstraints(companyTextField, 1, 1);
+        GridPane.setConstraints(wrongLabel, 0, 0, 1, 1, HPos.CENTER, VPos.TOP);
         GridPane.setColumnSpan(wrongLabel, 2);
 
         gridPane.getChildren().addAll(wrongLabel);
@@ -61,21 +56,31 @@ public class SignUpRestaurant {
         TextField mailTextField = new TextField();
         GridPane.setConstraints(mailTextField, 1, 3);
 
-        Label user = new Label("Address:");
-        GridPane.setConstraints(user, 0, 4);
+        Label cvrLabel = new Label("CVR: ");
+        TextField cvrTextField = new TextField();
+        GridPane.setConstraints(cvrLabel, 0 ,4) ;
+        GridPane.setConstraints(cvrTextField, 1,4);
 
-        TextField userTextField = new TextField();
-        GridPane.setConstraints(userTextField, 1, 4);
+
+        Label address= new Label("Address:");
+        GridPane.setConstraints( address, 0, 5);
+
+        TextField addressTextField = new TextField();
+        GridPane.setConstraints(addressTextField, 1, 5);
+        Label loginLabel = new Label("Login: ");
+        GridPane.setConstraints(loginLabel, 0,6);
+        TextField loginTextField = new TextField();
+        GridPane.setConstraints(loginTextField, 1,6);
 
         Label password = new Label("Password:");
-        GridPane.setConstraints(password, 0, 5);
+        GridPane.setConstraints(password, 0, 7);
 
         PasswordField passwordTextField = new PasswordField();
-        GridPane.setConstraints(passwordTextField, 1, 5);
+        GridPane.setConstraints(passwordTextField, 1, 7);
 
         gridPane.setGridLinesVisible(false);
         Button save = new Button("Save");
-        GridPane.setConstraints(save, 1, 7);
+        GridPane.setConstraints(save, 1, 8);
         primaryStage.setOnCloseRequest(event1 -> {
 
             event1.consume();
@@ -96,13 +101,13 @@ public class SignUpRestaurant {
                 }
             });
         });
-        GridPane.setConstraints(cancel, 1, 8);
+        GridPane.setConstraints(cancel, 1, 9);
 
 
         save.setOnAction(event -> {
 
-            if ((nameTextField.getText().equals("")) || (surnameTextField.getText().equals("")) || (telephoneTextField.getText().equals(""))
-                    || (mailTextField.getText().equals("")) && (userTextField.getText().equals("")) || (nameTextField.getText().equals("")) ||
+            if ((nameTextField.getText().equals("")) || (companyTextField.getText().equals("")) || (telephoneTextField.getText().equals(""))
+                    || (mailTextField.getText().equals("")) && (addressTextField.getText().equals("")) || (nameTextField.getText().equals("")) ||
                     (passwordTextField.getText().equals(""))) {
                 //  int phoneNumber = Integer.parseInt(telephoneTextField.getText());
                 System.out.println("empty textFields");
@@ -110,10 +115,12 @@ public class SignUpRestaurant {
                 wrongLabel.setTextFill(Color.RED);
 
             } else {
-                int phoneNumber = 13232;
+                int cvr = Integer.parseInt(cvrTextField.getText());
+                int phone = Integer.parseInt(telephoneTextField.getText());
 
-                databaseCustomer.insertBooking(nameTextField.getText(), surnameTextField.getText(), phoneNumber,
-                        mailTextField.getText(), userTextField.getText(), passwordTextField.getText());
+
+                databaseCustomer.insertRestaurant(nameTextField.getText(), companyTextField.getText(), cvr,addressTextField.getText(),
+                       phone, mailTextField.getText(),loginTextField.getText(),passwordTextField.getText());
                 primaryStage.close();
 
             }
@@ -121,7 +128,8 @@ public class SignUpRestaurant {
         });
 
 
-        gridPane.getChildren().addAll(name, nameTextField, surname, surnameTextField, telephone, telephoneTextField, mail, mailTextField, user, userTextField, password, passwordTextField, save, cancel);
+        gridPane.getChildren().addAll(name, nameTextField, companyNameLabel,companyTextField, telephone, telephoneTextField, mail, mailTextField, cvrLabel,cvrTextField, address, addressTextField, password,
+                passwordTextField, loginLabel,loginTextField, save, cancel);
 
 
         Scene scene = new Scene(gridPane, 400, 300);

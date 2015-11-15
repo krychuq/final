@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -9,12 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javax.xml.soap.Text;
-import java.awt.*;
 
 /**
  * Created by lucia on 11/10/15.
@@ -112,7 +107,7 @@ public class SignUpCustomer {
             } else {
                 int phoneNumber = 13232;
 
-                databaseCustomer.insertBooking(nameTextField.getText(), surnameTextField.getText(), phoneNumber,
+                databaseCustomer.insertCustomer(nameTextField.getText(), surnameTextField.getText(), phoneNumber,
                         mailTextField.getText(), userTextField.getText(), passwordTextField.getText());
                 primaryStage.close();
 

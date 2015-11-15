@@ -61,7 +61,7 @@ public class Restaurant {
 
     String companyName;
 
-    public Restaurant(String name, String addres, String companyName, int cvr, int telephone, String email) {
+    public Restaurant(String name, String addres, String companyName, int cvr, int telephone, String email,String login, String password) {
         this.name = name;
         this.addres = addres;
         this.companyName = companyName;
@@ -69,6 +69,8 @@ public class Restaurant {
 
         this.telephone = telephone;
         this.email = email;
+        this.login = login;
+
     }
 
     String addres;
@@ -79,6 +81,8 @@ public class Restaurant {
 
     int telephone;
     String email;
+    String password;
+    String login;
 
 
 }

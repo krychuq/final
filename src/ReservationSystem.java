@@ -71,7 +71,7 @@ public class ReservationSystem extends Application {
         GridPane.setConstraints(signUp, 1, 3);
         Button signUpRestaurant = new Button("Sign Up restaurant");
         signUpRestaurant.setOnAction(event3 -> {
-         signUpCustomer.signup();
+         signUpRestaurantWindow.signup();
         });
         Button showAllCustumer = new Button("show all custumers");
         showAllCustumer.setOnAction(event1 -> {
