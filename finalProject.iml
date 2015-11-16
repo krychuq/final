@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.29-bin" level="project" />
     <orderEntry type="library" name="jxbrowser-win-5.4.3" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1" level="project" />
   </component>
 </module>

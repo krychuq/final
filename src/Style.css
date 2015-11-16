@@ -1,0 +1,87 @@
+#reservationSystemGui{
+    -fx-background-image: url("background.jpg");
+
+
+
+
+
+}
+
+#buttonStyle{
+
+    -fx-background-image:url("people_button.jpg");
+    -fx-min-width: 128;
+    -fx-min-height: 48;
+
+
+}
+
+#buttonStyle1{
+    -fx-background-image:url("date_button.jpg");
+    -fx-min-width: 104;
+    -fx-min-height: 48;
+
+}
+
+#buttonStyle2{
+    -fx-background-image:url("hour_button.jpg");
+    -fx-min-width: 105;
+    -fx-min-height: 48;
+
+}
+
+#buttonStyle3{
+    -fx-background-image: url("restaurants_button.jpg");
+    -fx-min-width: 140;
+    -fx-min-height: 48;
+}
+
+#buttonStyle4{
+    -fx-background-image: url("restaurants_button.jpg");
+    -fx-min-width: 140;
+    -fx-min-height: 48;
+}
+
+
+#buttonStyle5{
+    -fx-background-image: url("findatabel_button.jpg");
+    -fx-min-width: 139;
+    -fx-min-height: 48;
+}
+#buttonStyle5:hover{
+
+    -fx-background-image: url("findatabel_hover.jpg");
+    -fx-min-width: 139;
+
+    -fx-min-height: 48;
+}
+#label {
+
+    -fx-font-size: 16;
+    -fx-text-fill: #2e2e2e;
+    -fx-font-family: Oxygen Light;
+}
+
+
+#label1 {
+
+    -fx-font-size: 20;
+    -fx-text-fill:  #351919;
+    -fx-font-family: Oxygen Bold;
+
+
+}
+
+#sign {
+
+    -fx-font-size: 14;
+    -fx-text-fill: #484848;
+    -fx-font-family: Oxygen Light;
+}
+#sign1{
+
+    -fx-font-size: 14;
+    -fx-text-fill: #484848;
+    -fx-font-family: Oxygen Light;
+}
+

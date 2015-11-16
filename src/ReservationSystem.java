@@ -65,6 +65,7 @@ public class ReservationSystem extends Application {
 
         Button logIn = new Button("Log In");
 
+
         GridPane.setConstraints(logIn, 1, 2);
 
         Button signUp = new Button("Sign Up");
@@ -90,6 +91,7 @@ public class ReservationSystem extends Application {
             if (customer != null) {
                 System.out.println("login succesed");
                 wrongLabel.setText("");
+                WelcomeWindow.start();
 
 
             } else {
