@@ -14,7 +14,7 @@ public class DatabaseCustomer {
     Customer customer;
 
     public DatabaseCustomer(){
-        System.out.println("***********Welcome to connections**************");
+        System.out.println("***********Welcome to connections************\n**");
         try {
 
             // String DB_URL = "jdbc:mysql://luftbike.dk.mysql:3306/luftbike_dk";

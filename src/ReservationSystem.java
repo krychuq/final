@@ -1,6 +1,4 @@
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -74,17 +72,19 @@ public class ReservationSystem extends Application {
          signUpRestaurantWindow.signup();
         });
         Button showAllCustumer = new Button("show all custumers");
+        Button showAllRestaurant = new Button("show all restaurant");
         showAllCustumer.setOnAction(event1 -> {
-            showAllTable();
+            showAllCustomers();
         });
         GridPane.setConstraints(showAllCustumer, 1, 4);
         GridPane.setConstraints(signUpRestaurant, 1, 5);
+        GridPane.setConstraints(showAllRestaurant,1,6);
 
        signUp.setOnAction(event -> {
            signUpCustomer.signup();
        });
          grid.setGridLinesVisible(false);
-        grid.getChildren().addAll(userName, nameInput, password, passwordInput, logIn, signUp, showAllCustumer, signUpRestaurant);
+        grid.getChildren().addAll(userName, nameInput, password, passwordInput, logIn, signUp, showAllCustumer, signUpRestaurant,showAllRestaurant);
         logIn.setOnAction(event2 -> {
             customer = databaseCustomer.checkLoginAndPassword(nameInput.getText(), passwordInput.getText());
             if (customer != null) {
@@ -113,11 +113,11 @@ public class ReservationSystem extends Application {
       //  }
 
     }
-    private void showAllTable(){
+    private void showAllCustomers(){
 
         Stage window = new Stage();
         VBox vBox = new VBox(10);
-        createTableOfAppoitment();
+        createTableOfCustomers();
         Button addButton = new Button("add");
         addButton.setOnAction(event1 -> {
             //window.close();
@@ -143,8 +143,35 @@ public class ReservationSystem extends Application {
 
     }
 
+    private void showAllRestaurants(){
+        Stage window = new Stage();
+        VBox vBox = new VBox(10);
+        createTableOfCustomers();
+        Button addButton = new Button("add");
+        addButton.setOnAction(event1 -> {
+            //window.close();
 
-    private void createTableOfAppoitment(){
+
+        });
+        Button deleteButton = new Button("delete");
+        deleteButton.setOnAction(event -> {
+
+
+
+        });
+        HBox hbox = new HBox(5);
+        hbox.getChildren().addAll(addButton,deleteButton);
+        hbox.setAlignment(Pos.CENTER);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.getChildren().addAll(tableView,hbox);
+        Scene scene = new Scene(vBox, 300,600);
+        window.setScene(scene);
+        window.setTitle("DoctorBooking");
+        window.show();
+    }
+
+
+    private void createTableOfCustomers(){
         tableView= new TableView();
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -176,10 +203,47 @@ public class ReservationSystem extends Application {
         javafx.scene.control.TableColumn<Customer,String> customerPassword = new javafx.scene.control.TableColumn<>("password:");
         customerPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
         customerPassword.setMinWidth(100);
-        tableView.getColumns().addAll(customerID, customerName, customerSurname,customerTelephon,customerMail,customerUserName,customerPassword);
+        tableView.getColumns().addAll(customerID, customerName, customerSurname, customerTelephon, customerMail, customerUserName, customerPassword);
 
         tableView.setItems(databaseCustomer.getCustomers());
 
+    }
+
+    private  void createTableOfRestaurants(){
+        tableView= new TableView();
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        javafx.scene.control.TableColumn<Customer,String> customerID = new javafx.scene.control.TableColumn<>("restaurant id");
+        customerID.setCellValueFactory(new PropertyValueFactory<>("restaurant ID"));
+        customerID.setMinWidth(100);
+
+
+        javafx.scene.control.TableColumn<Customer,String> customerName = new javafx.scene.control.TableColumn<>("name:");
+        customerName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        customerName.setMinWidth(100);
+
+        javafx.scene.control.TableColumn<Customer,String> customerSurname = new javafx.scene.control.TableColumn<>("surname:");
+        customerSurname.setCellValueFactory(new PropertyValueFactory<>("company name"));
+        customerSurname.setMinWidth(100);
+
+        javafx.scene.control.TableColumn<Customer,String> customerTelephon = new javafx.scene.control.TableColumn<>("telephone:");
+        customerTelephon.setCellValueFactory(new PropertyValueFactory<>("cvr"));
+        customerTelephon.setMinWidth(100);
+
+        javafx.scene.control.TableColumn<Customer,String> customerMail = new javafx.scene.control.TableColumn<>("mail:");
+        customerMail.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        customerMail.setMinWidth(100);
+
+        javafx.scene.control.TableColumn<Customer,String> customerUserName = new javafx.scene.control.TableColumn<>("user name:");
+        customerUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        customerUserName.setMinWidth(100);
+
+        javafx.scene.control.TableColumn<Customer,String> customerPassword = new javafx.scene.control.TableColumn<>("password:");
+        customerPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        customerPassword.setMinWidth(100);
+        tableView.getColumns().addAll(customerID, customerName, customerSurname,customerTelephon,customerMail,customerUserName,customerPassword);
+
+        tableView.setItems(databaseCustomer.getCustomers());
     }
 
 }

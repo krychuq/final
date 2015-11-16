@@ -31,6 +31,7 @@ public class SignUpCustomer {
         DatabaseCustomer databaseCustomer = new DatabaseCustomer();
 
 
+
         Label name = new Label("Name:");
         GridPane.setConstraints(name, 0, 0, 1, 1, HPos.LEFT, VPos.BOTTOM);
         gridPane.getRowConstraints().add(new RowConstraints(40));
