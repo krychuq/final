@@ -142,6 +142,20 @@ public class DatabaseCustomer {
 
         return  customer;
     }
+    public void deleteFromDB(int customerID)
+    {
+        String sql="DELETE FROM customer WHERE customerId = ?";
+        try
+        {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, customerID);
+            int numberOfRows= preparedStatement.executeUpdate();
+            System.out.println("Completed delete. Number of rows affected:"+numberOfRows);
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     private void updateAppointmentCount(){
         try

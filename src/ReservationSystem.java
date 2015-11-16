@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,11 +26,13 @@ public class ReservationSystem extends Application {
 
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         window = primaryStage;
         window.setTitle("RESERVATION SYSTEM");
+
 
         primaryStage.setOnCloseRequest(event1 -> {
 
@@ -120,14 +124,21 @@ public class ReservationSystem extends Application {
         createTableOfCustomers();
         Button addButton = new Button("add");
         addButton.setOnAction(event1 -> {
-            //window.close();
+            window.close();
+            signUpCustomer.signup();
 
 
         });
         Button deleteButton = new Button("delete");
         deleteButton.setOnAction(event -> {
 
+            ObservableList<Customer> customerList = FXCollections.observableArrayList();
+            customerList.addAll(tableView.getSelectionModel().getSelectedItems());
 
+            for(Customer c: customerList){
+                databaseCustomer.deleteFromDB(c.customerID);
+                tableView.getItems().remove(c);
+            }
 
         });
         HBox hbox = new HBox(5);
@@ -174,6 +185,9 @@ public class ReservationSystem extends Application {
     private void createTableOfCustomers(){
         tableView= new TableView();
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableView.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
 
         javafx.scene.control.TableColumn<Customer,String> customerID = new javafx.scene.control.TableColumn<>("customerId");
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
