@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,8 +13,13 @@ import java.sql.*;
 public class DatabaseCustomer {
     private Connection conn=null;
     Customer customer;
-
+    Restaurant restaurant;
     public DatabaseCustomer(){
+
+
+    }
+
+    public void conectToDb(){
         System.out.println("***********Welcome to connections**************");
         try {
 
@@ -37,23 +43,24 @@ public class DatabaseCustomer {
         {
             System.out.println("db error" + e.getMessage());
         }
-
     }
 
 
 
 
-    public void insertCustomer(String name, String surname, int phone, String email, String user, String password) {
-        String sql = "INSERT INTO customer VALUES (NULL , ?, ?, ?,?,?,?)";
+    public void insertCustomer(Customer insertCustomer1) {
+        Customer insertCustomer = insertCustomer1;
+        String sql = "INSERT INTO customer VALUES ( ?, ?, ?,?,?,?)";
+
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1,name);
-            preparedStatement.setString(2, surname);
-            preparedStatement.setInt(3, phone);
-            preparedStatement.setString(4, email);
-            preparedStatement.setString(5, user);
-            preparedStatement.setString(6, password);
+            preparedStatement.setString(1,insertCustomer.getMail());
+            preparedStatement.setString(2, insertCustomer.getUser());
+            preparedStatement.setString(3, insertCustomer.getName());
+            preparedStatement.setString(4, insertCustomer.getSurname());
+            preparedStatement.setInt(5, insertCustomer.getTelephone());
+            preparedStatement.setString(6, insertCustomer.getPassword());
 
 
             int numberOfRows = preparedStatement.executeUpdate();
@@ -64,21 +71,60 @@ public class DatabaseCustomer {
 
 
     }
+    public void insertCustomerWithoutReservation(Customer customer2) {
+        Customer insertCustomerWithoutReservation = customer2;
+        String sql = "INSERT INTO customer VALUES ( ?, NULL , ?,?,?,NULL )";
 
-    public void insertRestaurant(String name, String companyName, int cvr, String address, int phone,String mail, String login, String password) {
-        String sql = "INSERT INTO restaurant VALUES (NULL , ?, ?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,insertCustomerWithoutReservation.getMail());
+            preparedStatement.setString(2, insertCustomerWithoutReservation.getName());
+            preparedStatement.setString(3, insertCustomerWithoutReservation.getSurname());
+            preparedStatement.setInt(4, insertCustomerWithoutReservation.getTelephone());
+
+
+            int numberOfRows = preparedStatement.executeUpdate();
+            System.out.println("Completed insert. Number of rows affected:" + numberOfRows);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void insertBooking(Booking booking){
+        String sql = "INSERT INTO booking VALUES (null, ?, ?,?,?)";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setInt(2, booking.getCvr());
+            preparedStatement.setString(1, booking.getUserName());
+            preparedStatement.setTimestamp(3, booking.getDate());
+            preparedStatement.setInt(4, booking.getNumberOfPeople());
+
+
+            int numberOfRows = preparedStatement.executeUpdate();
+            System.out.println("Completed insert. Number of rows affected:" + numberOfRows);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+    public void insertRestaurant(int cvr, String nameOfRestaurant, String companyName, String address, int phone,String mail, String password) {
+        String sql = "INSERT INTO restaurant VALUES (?, ?,?,?,?,?,?)";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, companyName);
-            preparedStatement.setInt(3, cvr);
+            preparedStatement.setInt(1, cvr);
+            preparedStatement.setString(2, nameOfRestaurant);
+            preparedStatement.setString(3, companyName);
             preparedStatement.setString(4, address);
             preparedStatement.setInt(5, phone);
-            preparedStatement.setString(6,mail);
-            preparedStatement.setString(7, login);
-            preparedStatement.setString(8, password);
+            preparedStatement.setString(6, mail);
+            preparedStatement.setString(7, password);
 
 
             int numberOfRows = preparedStatement.executeUpdate();
@@ -87,6 +133,52 @@ public class DatabaseCustomer {
             e.printStackTrace();
         }
 
+
+    }
+
+    public String getDescriptionOfRestaurant(int cvr) throws SQLException {
+        String description ="";
+        String sql = "SELECT description FROM restaurant WHERE cvr =?";
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.setInt(1, cvr);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+
+
+            description = resultSet.getString(1);
+
+
+        }
+        return  description;
+
+    }
+
+
+    public ObservableList<String> getRetaurants(){
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        Customer customer;
+
+        String out = "";
+        String sql = "SELECT nameOfRestaurant FROM restaurant";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+
+
+                observableList.add(resultSet.getString(1));
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return  observableList;
 
     }
     public ObservableList<Customer> getCustomers(){
@@ -102,10 +194,11 @@ public class DatabaseCustomer {
 
             while (resultSet.next()) {
 
-               // String name = resultSet.getString(2)+" "+resultSet.getString(3);
-                customer = new Customer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),
-                        resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));
-                        observableList.addAll(customer);
+
+                customer = new Customer(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),
+                        resultSet.getInt(5),resultSet.getString(6));
+
+                observableList.add(customer);
 
 
             }
@@ -119,7 +212,7 @@ public class DatabaseCustomer {
 
     public Customer checkLoginAndPassword(String login, String password){
         try {
-            String sql = "SELECT * FROM customer WHERE username= ? AND password= ?";
+            String sql = "SELECT * FROM customer WHERE user= ? AND password= ?";
 
             //Statement statement=conn.createStatement();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -128,8 +221,9 @@ public class DatabaseCustomer {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
 
-                customer =  new Customer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),
-                        resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));
+                customer = new Customer(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),
+                        resultSet.getInt(5),resultSet.getString(6));
+
 
             } else {
                 customer = null;
@@ -170,6 +264,65 @@ public class DatabaseCustomer {
         }
 
     }
+    public int getRestaurant(String name){
+        String sql ="SELECT cvr FROM restaurant WHERE nameOfRestaurant = ?";
+        int cvr = 0;
+        try
+        {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                cvr = resultSet.getInt(1);
+
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+       return  cvr;
+    }
+    public void deleteFromDB(String username)
+    {
+        String sql="DELETE FROM customer WHERE user = ?";
+        try
+        {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            int numberOfRows= preparedStatement.executeUpdate();
+            System.out.println("Completed delete. Number of rows affected:"+numberOfRows);
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<String> numberOfpeopleComboBox(){
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        observableList.add("1 person");
+        observableList.add("2 people");
+        observableList.add("3 people");
+        observableList.add("4 people");
+        observableList.add("5 people");
+        observableList.add("6 people");
+        observableList.add("7 people");
+        observableList.add("8 people");
+
+        return observableList;
+    }
+
+
+    public ObservableList<String> hourInCombobox(){
+        ObservableList<String> observableList1 = FXCollections.observableArrayList();
+        observableList1.addAll("15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
+                "19:00", "19:30");
+
+        return  observableList1;
+
+    }
+
+
+
 
 
 

@@ -5,14 +5,38 @@ import javafx.scene.image.Image;
  */
 public class Restaurant {
 
-    String name;
 
-    public String getName() {
-        return name;
+    int cvr;
+    String companyName;
+    String address;
+    int phone;
+    String mail;
+    String password;
+    String restaurantName;
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    String description;
+    public int getCvr() {
+        return cvr;
+    }
+
+    public void setCvr(int cvr) {
+        this.cvr = cvr;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
     public String getCompanyName() {
@@ -23,66 +47,58 @@ public class Restaurant {
         this.companyName = companyName;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public int getCvr() {
-        return cvr;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setCvr(int cvr) {
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public Restaurant(int cvr,String restaurantName,String companyName,String address,int phone,String mail,String password){
         this.cvr = cvr;
-    }
-
-
-
-
-
-    public int getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(int telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    String companyName;
-
-    public Restaurant(String name, String addres, String companyName, int cvr, int telephone, String email,String login, String password) {
-        this.name = name;
-        this.addres = addres;
+        this.restaurantName = restaurantName;
         this.companyName = companyName;
-        this.cvr = cvr;
-
-        this.telephone = telephone;
-        this.email = email;
-        this.login = login;
+        this.address = address;
+        this.phone = phone;
+        this.mail = mail;
+        this.password = password;
 
     }
+    public Restaurant(int cvr,String restaurantName,String companyName,String address,int phone,String mail,String password,String description){
+        this.cvr = cvr;
+        this.restaurantName = restaurantName;
+        this.companyName = companyName;
+        this.address = address;
+        this.phone = phone;
+        this.mail = mail;
+        this.password = password;
+        this.description = description;
 
-    String addres;
-
-
-
-    int cvr;
-
-    int telephone;
-    String email;
-    String password;
-    String login;
-
-
+    }
 }

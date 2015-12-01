@@ -13,31 +13,26 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
-public class ReservationSystem extends Application {
+public class ReservationSystem {
     TableView tableView;
     Stage window;
-    SignUpCustomer signUpCustomer = new SignUpCustomer();
     DatabaseCustomer databaseCustomer = new DatabaseCustomer();
     Customer customer;
     Label wrongLabel = new Label("");
     SignUpRestaurant signUpRestaurantWindow = new SignUpRestaurant();
-    public static void main(String[] args) {
-        launch(args);
 
-    }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void showLoginWindow() {
 
-        window = primaryStage;
+       Stage window = new Stage();
         window.setTitle("RESERVATION SYSTEM");
 
-        primaryStage.setOnCloseRequest(event1 -> {
+        window.setOnCloseRequest(event1 -> {
 
             event1.consume();
             boolean result = ConfimBox.display("Warning", "Are you sure you want to close?");
             if (result) {
-                primaryStage.close();
+                window.close();
             }
 
         });
@@ -72,7 +67,7 @@ public class ReservationSystem extends Application {
         GridPane.setConstraints(signUp, 1, 3);
         Button signUpRestaurant = new Button("Sign Up restaurant");
         signUpRestaurant.setOnAction(event3 -> {
-         signUpRestaurantWindow.signup();
+            signUpRestaurantWindow.signup();
         });
         Button showAllCustumer = new Button("show all custumers");
         showAllCustumer.setOnAction(event1 -> {
@@ -82,7 +77,7 @@ public class ReservationSystem extends Application {
         GridPane.setConstraints(signUpRestaurant, 1, 5);
 
        signUp.setOnAction(event -> {
-           signUpCustomer.signup();
+
        });
          grid.setGridLinesVisible(false);
         grid.getChildren().addAll(userName, nameInput, password, passwordInput, logIn, signUp, showAllCustumer, signUpRestaurant);
@@ -101,9 +96,11 @@ public class ReservationSystem extends Application {
                 System.out.println("wrong user name or password");
             }
         });
-        Scene scene = new Scene(grid,300,400);
+        Scene scene = new Scene(grid,364,386);
         window.setScene(scene);
         window.show();
+        scene.getStylesheets().addAll(this.getClass().getResource("Style.css").toExternalForm());
+        grid.setId("reservationSystem");
     }
 
     private void closeProgram(){

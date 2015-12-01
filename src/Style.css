@@ -1,56 +1,145 @@
 #reservationSystemGui{
     -fx-background-image: url("background.jpg");
 
+}
+#reservationSystem{
+    -fx-background-image: url("pictures/background_signin.jpg");
 
+}
+#completeReservationBackground{
+    -fx-background-image: url("pictures/backgroundCompleteReservation.jpg");
+}
+.pane{
+    -fx-background-image: url("pictures/backgroundCompleteReservation.jpg");
+}
+#boxUnderSignUpCRS{
+    -fx-background-image: url("pictures/boxUnderSignup.png");
+    -fx-min-width: 468;
+    -fx-min-height: 242;
+}
+#titleUnderlineCompleteReservation{
+    -fx-background-image: url("pictures/line.jpg");
+}
+#hoverLabelsCompleteReservation{
+    -fx-background-image:url("pictures/firstBox.png");
+    -fx-font-size: 20px;
+}
+#completeReservationLabelTitle{
+    -fx-text-fill: black;
+    -fx-font: 20px "Arial";
+}
+#textFieldInputCRS{
 
+    -fx-background-color: rgba(255, 255, 255, 0.7);/* 40% opaque red */
+    -fx-border-width: 1px;
+    -fx-border-color: #9c5e66;
+    -fx-background-radius: 28%;
+    -fx-border-radius: 10%;
+    -fx-font-size:15px;
+    -fx-max-width: 287;
+    -fx-max-height: 20;
+}
+#buttonCRS{
+    -fx-background-image:url("pictures/completeresButton.jpg");
+    -fx-min-width: 170;
+    -fx-min-height: 48;
+}
+#pictureButton{
 
+}
+#pictureButton:hover{
+}
+#SignInCRS{
+    -fx-text-fill: #701616;
+    -fx-underline:true;
+    -fx-font:15px "Arial";
+    -fx-font-weight:bold;
+
+}
+#labelSignUpCRS{
+    -fx-text-fill: #351919;
+    -fx-font-family: Oxygen Light;
+    -fx-font-size: 15px;
+}
+/* SIGN IN CLASS*/
+#signUpButton{
+    -fx-background-image: url("pictures/lowerButton.jpg");
+    -fx-min-width: 125;
+    -fx-min-height: 25;
+}
+#signUpButton:hover{
+    -fx-background-image: url("pictures/lowerButtonHover.jpg");
+    -fx-min-width: 125;
+    -fx-min-height: 25;
+}
+
+#signInButton{
+    -fx-background-image:url("pictures/signinButton.jpg");
+    -fx-min-width: 98;
+    -fx-min-height: 34;
+}
+#signInButton:hover{
+    -fx-background-image:url("pictures/signinButtonHover.jpg");
+    -fx-min-width: 98;
+    -fx-min-height: 34;
+}
+#inputFieldSignInClass {
+    -fx-background-image: url("pictures/insert.png");
+}
+#mainLabelSignIn{
+    -fx-text-fill: #351919;
+    -fx-font-family: Oxygen Light;
+    -fx-font-size: 15px;
+    -fx-font-weight:bold;
 
 }
 
+/*----------------------------------------------------------------------------------------------*/
+
 #buttonStyle{
 
-    -fx-background-image:url("people_button.jpg");
+    -fx-background-image:url("emptyButton.jpg");
     -fx-min-width: 128;
     -fx-min-height: 48;
 
 
 }
+#buttonStyle-box .cell{
+    -fx-text-fill: blue;
+    -fx-font: 22px "Arial";
+}
 
 #buttonStyle1{
-    -fx-background-image:url("date_button.jpg");
-    -fx-min-width: 104;
+    -fx-background-image:url("emptyButton.jpg");
+    -fx-min-width: 80;
     -fx-min-height: 48;
 
 }
 
 #buttonStyle2{
-    -fx-background-image:url("hour_button.jpg");
+    -fx-background-image:url("emptyButton.jpg");
     -fx-min-width: 105;
     -fx-min-height: 48;
 
 }
 
 #buttonStyle3{
-    -fx-background-image: url("restaurants_button.jpg");
+    -fx-background-image: url("emptyButton.jpg");
     -fx-min-width: 140;
     -fx-min-height: 48;
 }
 
-#buttonStyle4{
-    -fx-background-image: url("restaurants_button.jpg");
-    -fx-min-width: 140;
-    -fx-min-height: 48;
-}
+
 
 
 #buttonStyle5{
-    -fx-background-image: url("findatabel_button.jpg");
+    -fx-background-image: url("pictures/findatabel_button.jpg");
     -fx-min-width: 139;
     -fx-min-height: 48;
 }
 #buttonStyle5:hover{
 
-    -fx-background-image: url("findatabel_hover.jpg");
+    -fx-background-image: url("pictures/findatabel_hover.jpg");
     -fx-min-width: 139;
 
     -fx-min-height: 48;
@@ -85,3 +174,100 @@
     -fx-font-family: Oxygen Light;
 }
 
+.combo-box-base
+{
+    -fx-background-image:url("pictures/emptyButton.jpg");
+    -fx-min-width: 128;
+    -fx-min-height: 48;
+
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+.combo-box-popup .list-view .list-cell {
+
+    /* No alternate highlighting */
+    -fx-background-color: #ececec;
+    -fx-text-fill: #9a9a9a;
+    -fx-font-family: Oxygen Light;
+
+
+}
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-text-fill: black;
+    -fx-background-color: #9f9b9d;
+    -fx-font-size:15px ;
+
+
+}
+.combo-box .cell: selected {
+    -fx-text-fill: #828282;
+    -fx-font-family: Oxygen Light;
+    -fx-font-size:15px ;
+
+}
+
+
+#hour-box-base
+{
+    -fx-background-image:url("pictures/emptyButton.jpg");
+    -fx-min-width: 104;
+    -fx-min-height: 48;
+
+}
+
+#hour-box-popup.list-view {
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+#hour-box-popup.list-view.list-cell {
+
+    /* No alternate highlighting */
+    -fx-background-color: #ececec;
+    -fx-text-fill: #9a3c0e;
+    -fx-font-family: Oxygen Light;
+
+
+}
+#hour-box-popup.list-view.list-cell:hover {
+    -fx-text-fill: #7a1bc6;
+    -fx-background-color: #9f9b9d;
+    -fx-font-size:15px ;
+
+
+}
+#hour-box.cell: selected {
+    -fx-text-fill: #0c2682;
+    -fx-font-family: Oxygen Light;
+    -fx-font-size:15px ;
+
+}
+
+#labelSignUp {
+    -fx-text-fill: #351919;
+    -fx-font-family: Oxygen Light;
+    -fx-font-size: 18px;
+}
+
+
+
+#insert{
+    -fx-background-image:url("insert.png");
+    -fx-min-width: 173;
+    -fx-min-height: 29;
+
+}
+.date-picker .month-year-pane{
+    -fx-background-color: #af7580;
+    -fx-padding: 5 5 5 5;
+    -fx-text-fill: BLACK;
+}
+.date-picker .day-name-cell{
+    -fx-background-color: rgba(255, 12, 13, 0.15);
+    -fx-text-fill: LIGHTGOLDENRODYELLOW;
+
+}

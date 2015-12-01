@@ -107,7 +107,7 @@ public class SignUpRestaurant {
         save.setOnAction(event -> {
 
             if ((nameTextField.getText().equals("")) || (companyTextField.getText().equals("")) || (telephoneTextField.getText().equals(""))
-                    || (mailTextField.getText().equals("")) && (addressTextField.getText().equals("")) || (nameTextField.getText().equals("")) ||
+                    || (mailTextField.getText().equals("")) ||(addressTextField.getText().equals("")) || (nameTextField.getText().equals("")) ||
                     (passwordTextField.getText().equals(""))) {
                 //  int phoneNumber = Integer.parseInt(telephoneTextField.getText());
                 System.out.println("empty textFields");
@@ -119,8 +119,8 @@ public class SignUpRestaurant {
                 int phone = Integer.parseInt(telephoneTextField.getText());
 
 
-                databaseCustomer.insertRestaurant(nameTextField.getText(), companyTextField.getText(), cvr,addressTextField.getText(),
-                       phone, mailTextField.getText(),loginTextField.getText(),passwordTextField.getText());
+                databaseCustomer.insertRestaurant(cvr, nameTextField.getText(), companyTextField.getText(),addressTextField.getText(),
+                       phone, mailTextField.getText(),passwordTextField.getText());
                 primaryStage.close();
 
             }
@@ -129,7 +129,7 @@ public class SignUpRestaurant {
 
 
         gridPane.getChildren().addAll(name, nameTextField, companyNameLabel,companyTextField, telephone, telephoneTextField, mail, mailTextField, cvrLabel,cvrTextField, address, addressTextField, password,
-                passwordTextField, loginLabel,loginTextField, save, cancel);
+                passwordTextField, save, cancel);
 
 
         Scene scene = new Scene(gridPane, 400, 300);

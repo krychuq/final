@@ -2,15 +2,15 @@
  * Created by krystian on 2015-11-12.
  */
 public class Customer {
-    int customerID;
 
-    public int getCustomerID() {
-        return customerID;
-    }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
+
+    String name;
+    String surname;
+    int telephone;
+    String mail;
+    String user;
+    String password;
 
     public String getName() {
         return name;
@@ -44,35 +44,36 @@ public class Customer {
         this.mail = mail;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUser() {
+        return user;
     }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUser(String userName) {
+        this.user = userName;
     }
     public  String getPassword(){
         return  password;
     }
+
     public void setPassword(String password){
         this.password = password;
     }
 
-    String name;
-    String surname;
-    int telephone;
-    String mail;
-    String userName;
-    String password;
+    public Customer(String mail, String user, String name,String surname, int telephone,String password){
 
-    public Customer(int customerID, String name,String surname, int telephone,String mail,String userName,String password){
-        this.customerID = customerID;
+        this.user = user;
         this.name = name;
         this.surname = surname;
         this.telephone = telephone;
         this.mail = mail;
-        this.userName = userName;
         this.password = password;
     }
+
+    public Customer(String mail,String name, String surname, int telephone){
+        this.name = name;
+        this.surname = surname;
+        this.telephone = telephone;
+        this.mail = mail;
+    }
+
 
 }

@@ -17,55 +17,78 @@ import javafx.stage.Stage;
 public class SignUpCustomer {
     Stage primaryStage;
     Label wrongLabel = new Label("");
+    Customer customer;
+    Label name = new Label("Name:");
+    TextField nameTextField = new TextField();
+    Label surname = new Label("Surname:");
+    TextField surnameTextField = new TextField();
+    Label telephone = new Label("Phone number:");
+    AttributeTextField telephoneTextField = new AttributeTextField();
+    Label mail = new Label("Mail");
+    TextField mailTextField = new TextField();
+    Label user = new Label("User name:");
+    TextField userTextField = new TextField();
+    Label password = new Label("Password:");
+    PasswordField passwordTextField = new PasswordField();
+    Controller controller;
+
+    public SignUpCustomer(Controller controller){
+        this.controller = controller;
+    }
 
 
-    public void signup()
+
+
+
+
+
+    public void signUp()
 
     {
         primaryStage = new Stage();
-        primaryStage.setTitle("SIGN IN");
+        primaryStage.setTitle("SIGN UP");
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setVgap(8);
         gridPane.setHgap(10);
-        DatabaseCustomer databaseCustomer = new DatabaseCustomer();
 
 
-        Label name = new Label("Name:");
+        name.setId("labelSignUp");
         GridPane.setConstraints(name, 0, 0, 1, 1, HPos.LEFT, VPos.BOTTOM);
         gridPane.getRowConstraints().add(new RowConstraints(40));
-        TextField nameTextField = new TextField();
+        nameTextField.setId("insert");
 
         GridPane.setConstraints(nameTextField, 1, 0, 1, 1, HPos.CENTER, VPos.BOTTOM);
 
-        Label surname = new Label("Surname:");
+        surname.setId("labelSignUp");
         GridPane.setConstraints(surname, 0, 1);
-        TextField surnameTextField = new TextField();
+        surnameTextField.setId("insert");
         GridPane.setConstraints(surnameTextField, 1, 1);
-        GridPane.setConstraints(wrongLabel, 0, 0,1,1, HPos.CENTER, VPos.TOP);
+        GridPane.setConstraints(wrongLabel, 0, 0, 1, 1, HPos.CENTER, VPos.TOP);
         GridPane.setColumnSpan(wrongLabel, 2);
 
         gridPane.getChildren().addAll(wrongLabel);
-        Label telephone = new Label("Phone number:");
+        telephone.setId("labelSignUp");
         GridPane.setConstraints(telephone, 0, 2);
-        AttributeTextField telephoneTextField = new AttributeTextField();
+        telephoneTextField.setId("insert");
         telephoneTextField.setMaxWidth(150);
         GridPane.setConstraints(telephoneTextField, 1, 2);
-        Label mail = new Label("Mail");
+
+        mail.setId("labelSignUp");
         GridPane.setConstraints(mail, 0, 3);
-        TextField mailTextField = new TextField();
+        mailTextField.setId("insert");
         GridPane.setConstraints(mailTextField, 1, 3);
 
-        Label user = new Label("User name:");
+        user.setId("labelSignUp");
         GridPane.setConstraints(user, 0, 4);
 
-        TextField userTextField = new TextField();
+        userTextField.setId("insert");
         GridPane.setConstraints(userTextField, 1, 4);
 
-        Label password = new Label("Password:");
+        password.setId("labelSignUp");
         GridPane.setConstraints(password, 0, 5);
 
-        PasswordField passwordTextField = new PasswordField();
+        passwordTextField.setId("insert");
         GridPane.setConstraints(passwordTextField, 1, 5);
 
         gridPane.setGridLinesVisible(false);
@@ -100,6 +123,7 @@ public class SignUpCustomer {
                     || (mailTextField.getText().equals("")) && (userTextField.getText().equals("")) || (nameTextField.getText().equals("")) ||
                     (passwordTextField.getText().equals(""))) {
                 //  int phoneNumber = Integer.parseInt(telephoneTextField.getText());
+
                 System.out.println("empty textFields");
                 wrongLabel.setText("Please fill all of textFields");
                 wrongLabel.setTextFill(Color.RED);
@@ -107,8 +131,10 @@ public class SignUpCustomer {
             } else {
                 int phoneNumber = 13232;
 
-                databaseCustomer.insertCustomer(nameTextField.getText(), surnameTextField.getText(), phoneNumber,
-                        mailTextField.getText(), userTextField.getText(), passwordTextField.getText());
+                customer = new Customer( mailTextField.getText(),userTextField.getText(),nameTextField.getText(), surnameTextField.getText(), phoneNumber,
+                passwordTextField.getText());
+               controller.getDatabaseCustomer().insertCustomer(customer);
+
                 primaryStage.close();
 
             }
@@ -119,15 +145,14 @@ public class SignUpCustomer {
         gridPane.getChildren().addAll(name, nameTextField, surname, surnameTextField, telephone, telephoneTextField, mail, mailTextField, user, userTextField, password, passwordTextField, save, cancel);
 
 
-        Scene scene = new Scene(gridPane, 400, 300);
+        Scene scene = new Scene(gridPane,364,386);
+        scene.getStylesheets().addAll(this.getClass().getResource("Style.css").toExternalForm());
+        gridPane.setId("reservationSystem");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
 }
-
-
-
 
 
 
